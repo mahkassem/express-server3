@@ -1,17 +1,22 @@
-import StudentManager, { Student } from "./modules/student-manager.module"
+import express, { Application } from 'express'
+import router from './routers'
+import helmet from 'helmet'
+import cors from 'cors'
+import morgan from 'morgan'
 
-const myStudent: Student = {
-    name: 'Mahmoud Ahmed',
-    age: 25,
-    hobbies: [
-        { name: 'Programming', description: 'I love programming' },
-        { name: 'Reading', description: 'I love reading' },
-    ]
-}
+const app: Application = express()
+const port = 3000
 
-const StudentA: StudentManager = new StudentManager(myStudent)
+app.use(
+    cors(),
+    helmet(),
+    morgan('dev'),
+)
 
-console.log(StudentA.getName())
-StudentA.setName('Mahmoud Ahmed Abdelrahman')
-console.log(StudentA.getHobby(0).description)
-console.log(StudentA.getName())
+app.use("/api/v1", router)
+
+app.listen(port, () => {
+    console.log(`App listening at http://localhost:${port}`)
+})
+
+export default app
