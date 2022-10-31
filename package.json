@@ -11,6 +11,8 @@
         "lint:fix": "eslint src/**/*.{ts,json} --fix",
         "prettier": "prettier --write src/**/*.{ts,json}",
         "build": "npx tsc",
+        "db:up": "npx db-migrate up",
+        "db:down": "npx db-migrate reset",
         "pretest": "npm run lint:fix && npm run build",
         "test": "jasmine"
     },
@@ -41,6 +43,8 @@
     },
     "dependencies": {
         "cors": "^2.8.5",
+        "db-migrate": "^0.11.13",
+        "db-migrate-pg": "^1.2.2",
         "express": "^4.18.2",
         "fs": "^0.0.1-security",
         "helmet": "^6.0.0",
