@@ -1,4 +1,4 @@
-import express, { Application } from 'express'
+import express, { Application, json } from 'express'
 import router from './routers'
 import helmet from 'helmet'
 import cors from 'cors'
@@ -9,11 +9,12 @@ const port = 3000
 
 app.use(
     cors(),
+    json(),
     helmet(),
     morgan('dev'),
 )
 
-app.use("/api/v1", router)
+app.use("/api", router)
 
 app.listen(port, () => {
     console.log(`App listening at http://localhost:${port}`)
